@@ -18,13 +18,6 @@ function explorer {
   explorer.exe .
 }
 
-function edge {
-  # Old Edge
-  # start microsoft-edge:
-  #
-  # New Chromioum Edge
-  & "${env:ProgramFiles(x86)}\Microsoft\Edge Dev\Application\msedge.exe"
-}
 function settings {
   start-process ms-setttings:
 }
@@ -33,7 +26,7 @@ function settings {
 # From https://stackoverflow.com/questions/3492920/is-there-a-system-defined-environment-variable-for-documents-directory
 $env:DOCUMENTS = [Environment]::GetFolderPath("mydocuments")
 
-# PS comes preset with 'HKLM' and 'HKCU' drives but is missing HKCR 
+# PS comes preset with 'HKLM' and 'HKCU' drives but is missing HKCR
 New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
 
 # Truncate homedir to ~
@@ -41,7 +34,7 @@ function limit-HomeDirectory($Path) {
   $Path.Replace("$home", "~")
 }
 
-# Must be called 'prompt' to be used by pwsh 
+# Must be called 'prompt' to be used by pwsh
 # https://github.com/gummesson/kapow/blob/master/themes/bashlet.ps1
 function prompt {
   $realLASTEXITCODE = $LASTEXITCODE
@@ -58,8 +51,8 @@ function out-default {
 }
 
 # If you prefer oh-my-posh
-# Import-Module posh-git
-# Import-Module oh-my-posh
+Import-Module posh-git
+Import-Module oh-my-posh
 
 function rename-extension($newExtension){
   Rename-Item -NewName { [System.IO.Path]::ChangeExtension($_.Name, $newExtension) }
