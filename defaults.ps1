@@ -53,6 +53,7 @@ function out-default {
 # If you prefer oh-my-posh
 Import-Module posh-git
 Import-Module oh-my-posh
+Set-PoshPrompt -Theme pure
 
 function rename-extension($newExtension){
   Rename-Item -NewName { [System.IO.Path]::ChangeExtension($_.Name, $newExtension) }

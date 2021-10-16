@@ -14,7 +14,7 @@ Add-PathVariable "${env:ProgramFiles}/git/bin"
 Add-PathVariable "${env:ProgramFiles}\Git\bin"
 
 # vscode
-Add-PathVariable "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\bin" 
+Add-PathVariable "${env:LOCALAPPDATA}\Programs\Microsoft VS Code\bin"
 
 # Python (also needed for the Python rethinkdb dump tool)
 Add-PathVariable "${env:ProgramFiles}\Python"
@@ -30,7 +30,7 @@ Add-PathVariable "${env:ProgramFiles}\Python\Scripts"
 function gg {
 	# Replace 'file:linenumber:content' with 'file:linenumber content'
 	# so you can just click the file:linenumber and go straight there.
-	& git grep -n -i @args | foreach-object { $_ -replace '(\d+):','$1 ' }  
+	& git grep -n -i @args | foreach-object { $_ -replace '(\d+):','$1 ' }
 }
 
 function get-git-ignored {
@@ -42,7 +42,7 @@ function get-git-untracked {
 }
 
 # For git rebasing
-# --wait required, see https://github.com/Microsoft/vscode/issues/23219 
+# --wait required, see https://github.com/Microsoft/vscode/issues/23219
 $env:EDITOR = 'code --wait'
 
 # Kinda like $EDITOR in nix
@@ -50,17 +50,5 @@ $env:EDITOR = 'code --wait'
 # You may prefer eg 'subl' or 'code' or whatever else
 function edit {
 	& "code" -g @args
-}
-
-function fork {
-	# Fork requires an absolute path https://github.com/ForkIssues/TrackerWin/issues/416#issuecomment-527067604
-	$absolutePath = resolve-path .
-	& ${env:LOCALAPPDATA}\Fork\Fork.exe $absolutePath
-}
-
-# I used to run Sublime so occasionally my fingers type it
-function subl {
-	# 	& "$env:ProgramFiles\Sublime Text 3\subl.exe" @args
-	write-output "Type 'edit' instead"
 }
 
